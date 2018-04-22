@@ -19,19 +19,19 @@ RSpec.describe Hamster::List do
 
     it "returns a lazy list of items for which predicate is true" do
       count = 0
-      a,b = L[1, 2, 3, 4].partition { |item| count += 1; item.odd? }
-      expect(a.take(1)).to eq([1])
+      true_predicate_items, _false_predicate_items = L[1, 2, 3, 4].partition { |item| count += 1; item.odd? }
+      expect(true_predicate_items.take(1)).to eq([1])
       expect(count).to be(3) # would be 1 if lists were lazier
-      expect(a.take(2)).to eq([1, 3])
+      expect(true_predicate_items.take(2)).to eq([1, 3])
       expect(count).to be(4) # would be 3 if lists were lazier
     end
 
     it "returns a lazy list of items for which predicate is false" do
       count = 0
-      a,b = L[1, 2, 3, 4].partition { |item| count += 1; item.odd? }
-      expect(b.take(1)).to eq([2])
+      _true_predicate_items, false_predicate_items = L[1, 2, 3, 4].partition { |item| count += 1; item.odd? }
+      expect(false_predicate_items.take(1)).to eq([2])
       expect(count).to be(4) # would be 2 if lists were lazier
-      expect(b.take(2)).to eq([2, 4])
+      expect(false_predicate_items.take(2)).to eq([2, 4])
       expect(count).to be(4)
     end
 
