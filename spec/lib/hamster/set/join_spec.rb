@@ -16,7 +16,7 @@ RSpec.describe Hamster::Set do
             expect(set).to eql(S[*values])
           end
 
-          it "returns #{expected.inspect}" do
+          it do
             expect(set.join("|")).to eql(expected)
           end
         end
@@ -37,7 +37,7 @@ RSpec.describe Hamster::Set do
             expect(set).to eql(S[*values])
           end
 
-          it "returns #{expected.inspect}" do
+          it do
             expect(set.join).to eql(expected)
           end
         end
@@ -55,7 +55,7 @@ RSpec.describe Hamster::Set do
           expect(set).to eql(S[DeterministicHash.new("A", 1), DeterministicHash.new("B", 2), DeterministicHash.new("C", 3)])
         end
 
-        it "returns #{@expected.inspect}" do
+        it do
           expect(set.join).to eq("A**B**C")
         end
       end
