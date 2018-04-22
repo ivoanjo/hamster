@@ -1293,7 +1293,7 @@ module Hamster
     alias :length :size
 
     def cached_size?
-      @size != nil
+      !!(@size ||= nil)
     end
   end
 
