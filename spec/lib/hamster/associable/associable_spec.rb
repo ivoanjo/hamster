@@ -40,12 +40,12 @@ RSpec.describe Hamster::Associable do
       end
 
       it "Hash should preserve the original" do
-        result = hash.update_in("A") { |value| "FLIBBLE" }
+        hash.update_in("A") { |value| "FLIBBLE" }
         expect(hash.get("A")).to eq("aye")
       end
 
       it "Vector should preserve the original" do
-        result = vector.update_in(1) { |value| "FLIBBLE" }
+        vector.update_in(1) { |value| "FLIBBLE" }
         expect(vector.get(1)).to eq(101)
       end
     end
@@ -70,12 +70,12 @@ RSpec.describe Hamster::Associable do
       end
 
       it "Hash should preserve the original" do
-        result = hash.update_in("B", "D", "E") { |value| "FLIBBLE" }
+        hash.update_in("B", "D", "E") { |value| "FLIBBLE" }
         expect(hash["B"]["D"]["E"]).to eq("eee")
       end
 
       it "Vector should preserve the original" do
-        result = vector.update_in(3, 2, 0) { |value| "FLIBBLE" }
+        vector.update_in(3, 2, 0) { |value| "FLIBBLE" }
         expect(vector[3][2][0]).to eq(300)
       end
 
@@ -114,7 +114,7 @@ RSpec.describe Hamster::Associable do
       end
 
       it "should preserve the original" do
-        result = hash.update_in("F", 1, "H") { |value| "FLIBBLE" }
+        hash.update_in("F", 1, "H") { |value| "FLIBBLE" }
         expect(hash["F"][1]["H"]).to eq("eitch")
       end
     end
@@ -130,7 +130,7 @@ RSpec.describe Hamster::Associable do
       end
 
       it "should preserve the original" do
-        result = vector.update_in(4, "B") { |value| "FLIBBLE" }
+        vector.update_in(4, "B") { |value| "FLIBBLE" }
         expect(vector[4]["B"]).to eq("bravo")
       end
     end
