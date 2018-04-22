@@ -4,11 +4,11 @@ RSpec.describe Hamster::Set do
   [:to_a, :entries].each do |method|
     describe "##{method}" do
       ('a'..'z').each do |letter|
-        let(:values) { ('a'..letter).to_a }
-        let(:set) { S.new(values) }
-        let(:result) { set.send(method) }
-
         context "on 'a'..'#{letter}'" do
+          let(:values) { ('a'..letter).to_a }
+          let(:set) { S.new(values) }
+          let(:result) { set.send(method) }
+
           it "returns an equivalent array" do
             expect(result.sort).to eq(values.sort)
           end
