@@ -7,8 +7,8 @@ RSpec.describe Hamster::Vector do
     context "when empty" do
       let(:vector) { V.empty }
 
-      it "raises an error for index -1" do
-        expect { vector.put(-1, :a) }.to raise_error
+      it "raises an IndexError error for index -1" do
+        expect { vector.put(-1, :a) }.to raise_error(IndexError)
       end
 
       it "allows indexes 0 and 1 to be put" do
@@ -71,8 +71,8 @@ RSpec.describe Hamster::Vector do
           end
 
           context "outside the absolute bounds of the vector" do
-            it "raises an error" do
-              expect { vector.put(-vector.size.next) {} }.to raise_error
+            it do
+              expect { vector.put(-vector.size.next) {} }.to raise_error(IndexError)
             end
           end
         end
@@ -121,8 +121,8 @@ RSpec.describe Hamster::Vector do
         end
 
         context "outside the absolute bounds of the vector" do
-          it "raises an error" do
-            expect { vector.put(-vector.size.next, "FLIBBLE") }.to raise_error
+          it do
+            expect { vector.put(-vector.size.next, "FLIBBLE") }.to raise_error(IndexError)
           end
         end
       end
