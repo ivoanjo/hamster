@@ -555,7 +555,11 @@ module Hamster
     # @param count [Integer] The number of positions to shift items by
     # @return [Vector]
     def rotate(count = 1)
-      return self if (count % @size) == 0
+      begin
+        return self if count.modulo(@size) == 0
+      rescue NoMethodError
+        raise TypeError, "Expected numeric argument, got #{count.class} '#{count.inspect}'"
+      end
       self.class.new(((array = to_a).frozen? ? array.rotate(count) : array.rotate!(count)).freeze)
     end
 
