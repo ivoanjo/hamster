@@ -217,8 +217,8 @@ module Hamster
           if child
             # Bring up the first entry from the child into entries
             new_children ||= @children.dup
-            new_children[index] = child.delete_at do |entry|
-              new_entries[index] = entry
+            new_children[index] = child.delete_at do |new_entry|
+              new_entries[index] = new_entry
             end
           else
             new_entries[index] = nil
