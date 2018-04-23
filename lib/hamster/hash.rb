@@ -472,7 +472,7 @@ module Hamster
     # @yieldreturn [Object] The value to associate this key with in the new `Hash`
     # @return [Hash]
     def merge(other)
-      trie = if block_given?
+      new_trie = if block_given?
         other.reduce(@trie) do |trie, (key, value)|
           if entry = trie.get(key)
             trie.put(key, yield(key, entry[1], value))
@@ -484,7 +484,7 @@ module Hamster
         @trie.bulk_put(other)
       end
 
-      derive_new_hash(trie)
+      derive_new_hash(new_trie)
     end
 
     # Retrieve the value corresponding to the given key object, or use the provided
